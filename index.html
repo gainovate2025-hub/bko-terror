@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BKO Terror</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilo.css">
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+</head>
+<body>
+
+<!-- ============ MENU ============ -->
+<section id="tela-menu" class="tela ativa">
+  <h1 class="titulo">BKO <span>TERROR</span></h1>
+  <p class="sub">O plantão acabou. A saída, não.</p>
+  <div class="botoes">
+    <button id="btn-personagem">🧍 Meu personagem</button>
+    <button id="btn-criar" class="forte">🚪 Criar sala</button>
+    <div class="entrar">
+      <input id="inp-codigo" maxlength="5" placeholder="CÓDIGO" autocomplete="off">
+      <button id="btn-entrar">Entrar</button>
+    </div>
+    <button id="btn-solo" class="fraco">Jogar sozinho</button>
+  </div>
+  <p id="msg-menu" class="msg"></p>
+</section>
+
+<!-- ============ PERSONAGEM ============ -->
+<section id="tela-personagem" class="tela">
+  <h2>Seu personagem</h2>
+  <div class="editor">
+    <canvas id="preview" width="220" height="220"></canvas>
+    <div class="campos">
+      <label class="nome">Nome <input id="p-nome" maxlength="12" autocomplete="off"></label>
+      <div class="linha"><span>Pele</span><div id="p-pele" class="cores"></div></div>
+      <div class="linha"><span>Cabelo</span><div id="p-cabelo" class="cores"></div></div>
+      <div class="linha"><span>Roupa</span><div id="p-roupa" class="cores"></div></div>
+      <div class="linha"><span>Acessório</span><div id="p-acessorio" class="opcoes"></div></div>
+      <div class="linha"><span>Profissão</span><div id="p-profissao" class="opcoes"></div></div>
+      <p id="p-prof-desc" class="desc"></p>
+      <h3>Atributos <small>pontos livres: <b id="p-pontos"></b></small></h3>
+      <div id="p-atributos"></div>
+    </div>
+  </div>
+  <button id="btn-salvar" class="forte">Salvar e voltar</button>
+</section>
+
+<!-- ============ SALA ============ -->
+<section id="tela-lobby" class="tela">
+  <h2>Sala <span id="lobby-codigo" class="codigo"></span></h2>
+  <p class="sub" id="lobby-dica"></p>
+  <div class="lobby">
+    <div><h3>Grupo</h3><ul id="lobby-jogadores"></ul></div>
+    <div><h3>Onde vocês ficam presos</h3><div id="lobby-mapas"></div></div>
+  </div>
+  <button id="btn-comecar" class="forte">Começar</button>
+</section>
+
+<!-- ============ JOGO ============ -->
+<section id="tela-jogo" class="tela">
+  <canvas id="tela"></canvas>
+  <div id="hud">
+    <div class="barras">
+      <div class="barra"><span title="Bateria da lanterna">🔦</span><div><i id="b-bateria"></i></div></div>
+      <div class="barra"><span title="Sanidade">🧠</span><div><i id="b-sanidade"></i></div></div>
+      <div class="barra"><span title="Fôlego">💨</span><div><i id="b-folego"></i></div></div>
+    </div>
+    <div id="objetivo"></div>
+    <ul id="equipe"></ul>
+    <div id="dica"></div>
+    <div id="status-grande"></div>
+    <div id="teclas">WASD andar · Mouse mirar · Shift correr · F lanterna · E pegar/levantar · G dar bateria · 1 👋 2 😱 3 👉 4 🤫 · Enter chat</div>
+  </div>
+  <div id="chat-log"></div>
+  <input id="chat-input" maxlength="80" placeholder="Fale com o grupo e aperte Enter" autocomplete="off">
+
+  <div id="historia" class="overlay">
+    <div class="caixa">
+      <h2 id="hist-titulo"></h2>
+      <p id="hist-texto"></p>
+      <p id="hist-tarefa" class="tarefa"></p>
+      <p id="hist-monstro" class="perigo"></p>
+      <p class="dica-hist">Fiquem juntos: sozinhos e no escuro vocês perdem a sanidade. Correr faz barulho. Lanterna acesa chama atenção.</p>
+      <small>clique pra começar</small>
+    </div>
+  </div>
+
+  <div id="fim" class="overlay">
+    <div class="caixa">
+      <h2 id="fim-titulo"></h2>
+      <ul id="fim-lista"></ul>
+      <p id="fim-tempo"></p>
+      <p id="fim-espera" class="sub"></p>
+      <div class="botoes-linha">
+        <button id="btn-voltar-sala" class="forte">Voltar pra sala</button>
+        <button id="btn-sair" class="fraco">Sair pro menu</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/mapas.js"></script>
+<script src="js/personagem.js"></script>
+<script src="js/rede.js"></script>
+<script src="js/som.js"></script>
+<script src="js/host.js"></script>
+<script src="js/desenho.js"></script>
+<script src="js/jogo.js"></script>
+</body>
+</html>
